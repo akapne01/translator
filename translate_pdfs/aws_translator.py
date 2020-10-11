@@ -7,17 +7,6 @@ from translate_pdfs.fonts import regular
 
 LANG = "lv"
 
-translate = boto3.client(service_name='translate',
-                         region_name='eu-west-1',
-                         use_ssl=True)
-
-result = translate.translate_text(Text="Hello, World",
-                                  SourceLanguageCode="auto",
-                                  TargetLanguageCode="lv")
-print('TranslatedText: ' + result.get('TranslatedText'))
-print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
-print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))
-
 
 def get_translated_page_content(reader, lang):
     """
