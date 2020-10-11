@@ -5,7 +5,13 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph
 
 from translate_pdfs.fonts import regular
 
+"""
+This script uses AWS Translator to translate the PDF.
+Please note to change the region to the one you wish to use.
+"""
+
 LANG = "lv"
+AWS_REGION = 'eu-west-1'
 
 
 def get_translated_page_content(reader, lang):
@@ -17,7 +23,7 @@ def get_translated_page_content(reader, lang):
     num_pages = reader.numPages
     page_contents = []
     translate = boto3.client(service_name='translate',
-                             region_name='eu-west-1',
+                             region_name=AWS_REGION,
                              use_ssl=True)
     
     for p in range(num_pages):

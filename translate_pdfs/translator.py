@@ -9,6 +9,10 @@ from reportlab.platypus import SimpleDocTemplate
 from translate_pdfs.fonts import *
 
 """
+This script uses Google Translate library to translate the PDF
+"""
+
+"""
 Constants
 """
 URL_COM = 'translate.google.com'
