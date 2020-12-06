@@ -25,15 +25,15 @@ def get_translated_page_content(reader, lang):
     translate = boto3.client(service_name='translate',
                              region_name=AWS_REGION,
                              use_ssl=True)
-    
+
     for p in range(num_pages):
         page = reader.getPage(p)
-        
+
         result = translate.translate_text(Text=page.extractText(),
                                           SourceLanguageCode="auto",
                                           TargetLanguageCode=lang)
         translation = result.get('TranslatedText')
-        
+
         result_text = translation.replace("\n", " ").replace("W", "")
         page_contents.append(result_text)
     return page_contents
@@ -43,17 +43,18 @@ def translate_pdf(path, lang):
     file = open(path, 'rb')
     reader = PdfFileReader(file)
     page_contents = get_translated_page_content(reader, lang)
-    
+
     page_text = []
     name = f'AWS_{LANG}_{path}'
     pdf = SimpleDocTemplate(name, pagesize=A4)
-    
+
     for text in page_contents:
         page_text.append(
             Paragraph(text, encoding='utf-8', style=regular))
-    
+
     pdf.build(page_text)
 
 
 if __name__ == '__main__':
-    translate_pdf("example.pdf", LANG)
+    file_name = "example.pdf"
+    translate_pdf(file_name, LANG)

@@ -4,7 +4,8 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-directory = os.getcwd() + "/fonts/"
+directory = os.path.join(os.getcwd(), "translate_pdfs", "fonts")
+print(directory)
 """
 CONSTANTS
 """
